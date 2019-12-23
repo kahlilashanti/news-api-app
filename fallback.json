@@ -1,0 +1,10 @@
+{
+        "articles": [
+        {
+            "title": "You look for article, it ain't found...",
+            "url": "",
+            "urlToImage": "images/rolling-eyes.jpg",
+            "description": "Try looking again when you have an internet connection."
+        }
+    ]
+}

@@ -1,0 +1,22 @@
+{
+  "name": "news_app",
+  "version": "1.0.0",
+  "description": "pwa news application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kahlilashanti/news-api-app.git"
+  },
+  "author": "Kahlil Ashanti",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kahlilashanti/news-api-app/issues"
+  },
+  "homepage": "https://github.com/kahlilashanti/news-api-app#readme",
+  "dependencies": {
+    "workbox-sw": "^4.3.1"
+  }
+}
