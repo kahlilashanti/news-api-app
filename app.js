@@ -5,24 +5,34 @@ const defaultSource = "TechCrunch"
 
 
 
-window.addEventListener('load', async e =>{
-    updateNews();
-    await updateSources();
-    sourceSelector.value = defaultSource;
+// window.addEventListener('load', async e =>{
+//     updateNews();
+//     await updateSources();
+//     sourceSelector.value = defaultSource;
 
-    sourceSelector.addEventListener('change', e =>{
-        updateNews(e.target.value);
-    })
+//     sourceSelector.addEventListener('change', e =>{
+//         updateNews(e.target.value);
+//     })
 
-    if('serviceWorker' in navigator){
-        try{
-            navigator.serviceWorker.register('sw.js');
-            console.log('SW registered');
-        } catch(error){
-            console.log('SW not registered');
-        }
+    
+// })
+
+if('serviceWorker' in navigator){
+    try{
+        navigator.serviceWorker.register('sw.js');
+        console.log('SW registered');
+    } catch(error){
+        console.log('SW not registered');
     }
-})
+}
+
+window.addEventListener('load', e => {
+    sourceSelector.addEventListener('change', evt => updateNews(evt.target.value));
+    updateNewsSources().then(() => {
+      sourceSelector.value = defaultSource;
+      updateNews();
+    });
+  });
 
 async function updateSources(){
     // const res = await fetch(`https://newsapi.org/v2/sources?apiKey=${apiKey}`);
@@ -42,13 +52,14 @@ async function updateNews(source = defaultSource){
 }
 
 function createArticle(article){
-   `
+   return `
     <div class="article">
         <a href="${article.url}">
             <h2>${article.title}</h2>
-            <img src="${article.urlToImage}">
+            <img src="${article.urlToImage}" alt="${article.title}">
             <p>${article.description}</p>
         </a>
     </div>
-    `
+    `;
 }
+

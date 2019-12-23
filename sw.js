@@ -17,6 +17,13 @@ const staticAssets = [
 const wb = new WorkboxSW();
 wb.precache(staticAssets);
 
+wb.router.registerRoute('https://newsapi.org/(.*), wb.strategies.networkFirst()');
+wb.router.registerRoute(/.*\.(png|jpg|jpeg|gif)/, wb.strategies.cacheFirst({
+    cacheName: 'news-images',
+    cacheExpiration: { maxEntries: 20, maxAgeSeconds: 12 * 60 * 60},
+    cacheableResponse: { statuses [0, 200] }
+}));
+
 //this is the code without using workbox
 // self.addEventListener('install', async event => {
 //     const cache = await caches.open('news-static');
